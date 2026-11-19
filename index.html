@@ -18,6 +18,11 @@
 @media(min-width:992px) and (max-width:1199px){.navbar .brand-logo{width:210px}.navbar .nav-link{font-size:11px}.navbar .nav-cta{font-size:12px}}
 @media(max-width:991px){.navbar .brand-logo{width:220px}.navbar-toggler{margin-left:auto}.navbar .nav-cta{width:100%;text-align:center}}@media(max-width:359px){.navbar .brand-logo{width:195px}}
 </style>
+
+<style id="full-surveying-hero">
+.navbar{position:sticky!important;inset:0 0 auto!important;top:0!important}.hero{height:auto!important;min-height:0!important;background:#102b43}.hero-sticky{position:relative!important;top:auto!important;height:auto!important;min-height:0!important;display:grid;grid-template-columns:1fr 1.12fr;gap:42px;align-items:center;padding:45px max(5vw,24px) 60px;overflow:visible}.hero-photo{position:relative!important;inset:auto!important;width:100%!important;height:auto!important;background:none!important;object-fit:contain!important;transform:none!important;opacity:1!important;grid-column:2;grid-row:1;border-radius:4px}.hero-shade{display:none!important}.hero-content{position:relative!important;inset:auto!important;max-width:100%;width:100%;padding:0!important;grid-column:1;grid-row:1;color:#fff}.hero h1{font-size:clamp(2.5rem,4.6vw,4.6rem);line-height:1.15;margin:20px 0}.hero-content p{color:#e1e8ed;max-width:520px}.hero-content .eyebrow{color:#e7b58b}.hero-call{display:inline-flex;flex-wrap:wrap;font-size:17px;line-height:1.5;max-width:100%;white-space:normal}.hero-meta{margin-top:25px;color:#e1e8ed}.hero .script{color:#e7b58b}
+@media(max-width:767px){.hero-sticky{display:flex;flex-direction:column;padding:25px 22px 50px;gap:30px}.hero-photo{order:0}.hero-content{order:1}.hero h1{font-size:clamp(2.6rem,11vw,4rem)}.hero-call{font-size:16px}.hero-meta{display:none}}
+</style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
@@ -39,8 +44,7 @@
   <main>
     <section class="hero" id="home" aria-label="American Surveying introduction">
       <div class="hero-sticky">
-        <div class="hero-photo" id="heroPhoto" style="background-image:url('assets/img-1.jpg')" role="img" aria-label="Wide Texas landscape at golden hour"></div>
-        <div class="hero-photo-next" id="heroPhotoNext" style="background-image:url('assets/img-2.jpg')" role="img" aria-label="Surveyor working with precision instruments in an open field"></div>
+        <img class="hero-photo" id="heroPhoto" src="assets/img-1.jpg" alt="Wide Texas landscape at golden hour" fetchpriority="high">
         <div class="hero-shade"></div>
         <div class="container hero-content">
           <div class="eyebrow">San Antonio, TX · Surveying information &amp; referrals</div>
@@ -193,12 +197,7 @@
 
       const onScroll = () => {
         nav.classList.toggle('scrolled', window.scrollY > 20);
-        if (!reduced && hero) {
-          const rect = hero.getBoundingClientRect();
-          const progress = Math.max(0, Math.min(1, -rect.top / (hero.offsetHeight - innerHeight)));
-          photo.style.transform = `scale(${1.03 + progress * .12})`;
-          photoNext.style.opacity = Math.max(0, (progress - .28) / .62).toFixed(2);
-        }
+
       };
       let ticking = false;
       window.addEventListener('scroll', () => {
